@@ -1,0 +1,160 @@
+<form [formGroup]="exclusionForm" (ngSubmit)="onSubmit()">
+
+  <h3>Mantenedor de Exclusiones</h3>
+  <hr>
+
+  <div class="form-group">
+    <label class="control-label col-md-2" for="Rut">Rut</label>
+    <div class="col-md-10">
+      <div class="col-md-5">
+        <input type="text" [ngClass]="{invalidField: rut.invalid && (rut.dirty || rut.touched)}" class="form-control text-box single-line"
+          name="rut" formControlName="rut">
+        <!-- <div>Aqui los errores {{this.rut.errors| json}}</div>-->
+        <div *ngIf="rut.invalid && (this.rut.dirty || this.rut.touched)" class="alert alert-danger">
+          <div *ngIf="rut.hasError('required')">
+            El rut es requerido
+          </div>
+          <div *ngIf="rut.hasError('invalidRut')">
+            El rut es invalido
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-2" for="Descripcion">Area</label>
+    <div class="col-md-10">
+      <div class="col-md-5">
+        <select [ngClass]="{invalidField: this.areaId.invalid && (this.areaId.dirty || this.areaId.touched)}" class="form-control"
+          id="areaId" name="areaId" formControlName="areaId">
+          <option *ngFor="let item of this.areas" [ngValue]="item.id">{{item.nombre}}</option>
+        </select>
+        <div *ngIf="this.areaId.invalid && (this.areaId.dirty || this.areaId.touched)" class="alert alert-danger">
+          <div *ngIf="this.areaId.hasError('required')">
+            El area es un campo requerido
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-2" for="cargoId">Cargo</label>
+    <div class="col-md-10">
+      <div class="col-md-5">
+        <select [ngClass]="{invalidField: this.cargoId.invalid && (this.cargoId.dirty || this.cargoId.touched)}" class="form-control"
+          id="cargoId" name="cargoId" formControlName="cargoId">
+          <option *ngFor="let item of cargos" [ngValue]="item.id">{{item.descripcion}}</option>
+        </select>
+        <div *ngIf="cargoId.invalid && (cargoId.dirty || cargoId.touched)" class="alert alert-danger">
+
+          <div *ngIf="cargoId.hasError('required')">
+            El cargo es requerido
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <label class="control-label col-md-2" for="motivoBloqueoId">Motivo</label>
+    <div class="col-md-10">
+      <div class="col-md-5">
+        <select [ngClass]="{invalidField: this.motivoBloqueoId.invalid && (this.motivoBloqueoId.dirty || this.motivoBloqueoId.touched)}"
+          class="form-control" id="motivoBloqueoId" name="motivoBloqueoId" formControlName="motivoBloqueoId">
+          <option *ngFor="let item of motivos" [ngValue]="item.id">{{item.descripcion}}</option>
+        </select>
+        <div *ngIf="motivoBloqueoId.invalid && (motivoBloqueoId.dirty || motivoBloqueoId.touched)" class="alert alert-danger">
+
+          <div *ngIf="motivoBloqueoId.hasError('required')">
+            La descripcion es requerida
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-2" for="comentario">Comentario</label>
+    <div class="col-md-10">
+      <div class="col-md-5">
+        <input type="text" aria-multiline="true" [ngClass]="{invalidField: comentario.invalid && (comentario.dirty || comentario.touched)}"
+          class="form-control text-box single-line" name="comentario" formControlName="comentario">
+
+
+        <div *ngIf="this.comentario.invalid && (this.comentario.dirty || this.comentario.touched)" class="alert alert-danger">
+          <div *ngIf="comentario.hasError('required')">
+            El comentario es requerido
+          </div>
+
+          <div *ngIf="comentario.hasError('maxlength')">
+            El comentario ingresado supera la longitud maxima
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-2" for="fechaInicio">Fecha Inicio</label>
+    <div class="col-md-10">
+      <div class="col-md-5">
+        <input type="datetime-local" multiple="multiple" [ngClass]="{invalidField: fechaInicio.invalid && (fechaInicio.dirty || fechaInicio.touched)}"
+          class="form-control text-box single-line" name="fechaInicio" formControlName="fechaInicio">
+
+
+        <div *ngIf="fechaInicio.invalid && (fechaInicio.dirty || fechaInicio.touched)" class="alert alert-danger">
+         <div *ngIf="fechaInicio.hasError('required')">
+            La fecha de inicio es requerida
+          </div>
+          <div *ngIf="fechaInicio.hasError('pattern')">
+            La fecha de inicio es invalida
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-2" for="fechaFin">Fecha Fin</label>
+    <div class="col-md-10">
+      <div class="col-md-5">
+        <input type="datetime-local" multiple="multiple" [ngClass]="{invalidField: fechaFin.invalid && (fechaFin.dirty || fechaFin.touched)}"
+          class="form-control text-box single-line" name="fechaFin" formControlName="fechaFin">
+
+
+        <div *ngIf="fechaFin.invalid && (fechaFin.dirty || fechaFin.touched)" class="alert alert-danger">
+          <div *ngIf="fechaFin.hasError('required')">
+            La fecha de fin es requerida
+          </div>
+          <div *ngIf="fechaFin.hasError('pattern')">
+            La fecha de fin es invalida
+          </div>
+        </div>
+
+        <div *ngIf="exclusionForm.hasError('dates')" class="alert alert-danger">
+
+         {{exclusionForm.getError('dates')}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group ">
+    <div class="col-md-offset-2 col-md-10 ">
+      <button class="btn btn-default " [disabled]="exclusionForm.invalid" type="submit">Guardar</button>
+    </div>
+  </div>
+</form>
+
+
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8) " size="default " color="#fff " type="ball-clip-rotate "></ngx-spinner>
+<div>
+  <a [routerLink]="[ '/exclusiones/listar'] ">Regresar</a>
+</div>

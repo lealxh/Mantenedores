@@ -1,0 +1,49 @@
+<div>
+  <h3>Mantenedor de Perfiles</h3>
+  <hr>
+  <dl class="dl-horizontal">
+    <dt>
+      Codigo
+    </dt>
+
+    <dd>
+      {{this.perfil.codigo}}
+    </dd>
+
+    <dt>
+      Desc. Perfil
+    </dt>
+
+    <dd>
+      {{this.perfil.descripcion}}
+    </dd>
+
+    <dt>
+      PI Max
+    </dt>
+
+    <dd>
+      {{this.perfil.piMax}}
+    </dd>
+
+    <dt>
+      Estado
+    </dt>
+    <dd>
+      {{this.perfil.estadoPerfilDescripcion}}
+    </dd>
+
+    <dt>
+      Tipo
+    </dt>
+
+    <dd>
+      {{this.perfil.tipoPerfilDescripcion}}
+    </dd>
+
+  </dl>
+  <hr>
+  <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+  <div class="col-md-offset-1">
+    <a [routerLink]="[ '/perfiles/listar'] ">Regresar</a>
+  </div>

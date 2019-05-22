@@ -1,0 +1,58 @@
+<div>
+  <h3>Mantenedor de Exclusiones</h3>
+  <hr>
+  <dl class="dl-horizontal">
+    <dt>
+      Rut
+    </dt>
+
+    <dd>
+      {{this.data.rut}}
+    </dd>
+
+    <dt>
+      Motivo Bloqueo
+    </dt>
+
+    <dd>
+      {{this.data.motivoBloqueoDescripcion}}
+    </dd>
+
+    <dt>
+      Tipo de Bloqueo
+    </dt>
+
+    <dd>
+      {{this.data.tipoBloqueo}}
+    </dd>
+
+
+    <dt>
+      Fecha de Inicio
+    </dt>
+
+    <dd>
+      {{this.data.fechaInicio|date:'dd/MMM/yy h:mma'}}
+    </dd>
+
+    <dt>
+      Fecha de Fin
+    </dt>
+
+    <dd>
+      {{this.data.fechaFin|date:'dd/MMM/yy h:mma'}}
+    </dd>
+
+    <dt>
+      Comentario
+    </dt>
+
+    <dd>
+      {{this.data.comentario}}
+    </dd>
+  </dl>
+  <hr>
+  <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+  <div class="col-md-offset-1">
+    <a [routerLink]="[ '/exclusiones/listar'] ">Regresar</a>
+  </div>

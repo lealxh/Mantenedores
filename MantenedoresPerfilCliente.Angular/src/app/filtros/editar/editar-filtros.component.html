@@ -1,0 +1,247 @@
+<form [formGroup]="filtroForm" (ngSubmit)="onSubmit()">
+
+  <h3>Mantenedor de Filtros</h3>
+  <hr>
+
+  <div class="form-group">
+    <label class="control-label col-md-2" for="Codigo">Codigo</label>
+    <div class="col-md-10">
+      <div class="col-md-5">
+        <input type="number" min="1" step="1" [ngClass]="{invalidField: codigo.invalid && (codigo.dirty || codigo.touched)}" class="form-control text-box single-line"
+          name="Codigo" formControlName="codigo">
+
+
+        <div *ngIf="codigo.invalid && (codigo.dirty || codigo.touched)" class="alert alert-danger">
+
+          <div *ngIf="codigo.hasError('required')">
+            El codigo es requerido
+          </div>
+          <div *ngIf="codigo.hasError('pattern')">
+            El campo codigo solo admite valores enteros
+          </div>
+          <div *ngIf="codigo.hasError('min')">
+            El campo codigo debe ser mayor a cero
+          </div>
+          <div *ngIf="codigo.hasError('maxlength')">
+            El codigo ingresado es invalido
+          </div>
+          <div *ngIf="codigo.hasError('CodigoFiltroOcupado')">
+            El codigo ingresado ya se encuentra ocupado
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-2" for="Descripcion">Nombre Filtro</label>
+    <div class="col-md-10">
+      <div class="col-md-5">
+        <input [ngClass]="{invalidField: descripcion.invalid && (descripcion.dirty || descripcion.touched)}" class="form-control text-box single-line"
+          name="Descripcion" formControlName="descripcion">
+        <div *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)" class="alert alert-danger">
+          <div *ngIf="descripcion.hasError('required')">
+            El nombre del filtro es un campo requerido
+          </div>
+          <div *ngIf="descripcion.hasError('maxlength')">
+            El nombre ingresado es invalido
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-2" for="universoId">Universo</label>
+    <div class="col-md-10">
+      <div class="col-md-5">
+        <select [ngClass]="{invalidField: universoId.invalid && (universoId.dirty || descripcion.touched)}" class="form-control"
+          id="universoId" name="universoId" formControlName="universoId">
+          <option *ngFor="let item of universos" [ngValue]="item.id">{{item.descripcion}}</option>
+        </select>
+        <div *ngIf="universoId.invalid && (universoId.dirty || universoId.touched)" class="alert alert-danger">
+
+          <div *ngIf="universoId.hasError('required')">
+            El universo es requerido
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-2" for="estadoFiltroId">Estado</label>
+    <div class="col-md-10">
+      <div class="col-md-5">
+        <select [ngClass]="{invalidField: estadoFiltroId.invalid && (estadoFiltroId.dirty || estadoFiltroId.touched)}" class="form-control"
+          id="estadoFiltroId" name="estadoFiltroId" formControlName="estadoFiltroId">
+          <option *ngFor="let item of estados" [ngValue]="item.id">{{item.descripcion}}</option>
+        </select>
+        <div *ngIf="estadoFiltroId.invalid && (estadoFiltroId.dirty || estadoFiltroId.touched)" class="alert alert-danger">
+
+          <div *ngIf="estadoFiltroId.hasError('required')">
+            El estado es requerido
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-2" for="TipoPerfilId">Perfil</label>
+    <div class="col-md-10">
+      <div class="col-md-5">
+        <select [ngClass]="{invalidField: perfilId.invalid && (perfilId.dirty || perfilId.touched)}" class="form-control" id="perfilId"
+          name="perfilId" formControlName="perfilId">
+          <option *ngFor="let item of perfiles" [ngValue]="item.id">{{item.descripcion}}</option>
+        </select>
+        <div *ngIf="perfilId.invalid && (perfilId.dirty || perfilId.touched)" class="alert alert-danger">
+
+          <div *ngIf="perfilId.hasError('required')">
+            El perfil es requerido
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-2" for="orden">Orden</label>
+    <div class="col-md-10">
+      <div class="col-md-5">
+        <input type="number" step="1" min="1" [ngClass]="{invalidField: orden.invalid && (orden.dirty || orden.touched)}" class="form-control text-box single-line"
+          name="orden" formControlName="orden">
+
+        <div *ngIf="orden.invalid && (orden.dirty || orden.touched)" class="alert alert-danger">
+          <div *ngIf="orden.hasError('required')">
+            El orden es un campo requerido
+          </div>
+          <div *ngIf="orden.hasError('pattern')">
+            El campo orden solo admite valores enteros
+          </div>
+          <div *ngIf="orden.hasError('min')">
+            El campo orden debe ser mayor a cero
+          </div>
+          <div *ngIf="orden.hasError('maxlength')">
+            El orden ingresado es invalido
+          </div>
+
+          <div *ngIf="orden.hasError('OrdenFiltroOcupado')">
+            El orden ingresado ya se encuentra ocupado
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-2" for="corte1">Corte 1</label>
+    <div class="col-md-10">
+      <div class="col-md-5">
+        <input type="number" step="1" min="1" [ngClass]="{invalidField: corte1.invalid && (corte1.dirty || corte1.touched)}" class="form-control text-box single-line"
+          name="corte1" formControlName="corte1">
+        <div *ngIf="corte1.invalid && (corte1.dirty || corte1.touched)" class="alert alert-danger">
+
+          <div *ngIf="corte1.hasError('pattern')">
+            El campo corte 1 debe ser entero
+          </div>
+
+          <div *ngIf="corte1.hasError('min')">
+            El corte 1 debe ser mayor a cero
+          </div>
+          <div *ngIf="corte1.hasError('maxlength')">
+            El corte1 ingresado es invalido
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-2" for="corte2">Corte 2</label>
+    <div class="col-md-10">
+      <div class="col-md-5">
+
+        <input type="number" step="1" min="1" [ngClass]="{invalidField: corte2.invalid && (corte2.dirty || corte1.touched)}" class="form-control text-box single-line"
+          name="corte2" formControlName="corte2">
+        <div *ngIf="corte2.invalid && (corte2.dirty || corte2.touched)" class="alert alert-danger">
+
+          <div *ngIf="corte2.hasError('pattern')">
+            El campo corte 2 debe ser entero
+          </div>
+          <div *ngIf="corte2.hasError('min')">
+            El corte 2 debe ser mayor a cero
+          </div>
+          <div *ngIf="corte2.hasError('maxlength')">
+            El corte 2 ingresado es invalido
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <label class="control-label col-md-2" for="monto1">Monto 1</label>
+    <div class="col-md-10">
+      <div class="col-md-5">
+
+        <input type="number" step="0.01" min="1.00" [ngClass]="{invalidField: monto1.invalid && (monto1.dirty || monto1.touched)}"
+          class="form-control text-box single-line" name="monto1" formControlName="monto1">
+        <div *ngIf="monto1.invalid && (monto1.dirty || monto1.touched)" class="alert alert-danger">
+
+          <div *ngIf="monto1.hasError('pattern')">
+            El monto 1 solo acepta valores reales con dos posiciones decimales
+          </div>
+
+          <div *ngIf="monto1.hasError('min')">
+            El monto 1 debe ser mayor a cero
+          </div>
+          <div *ngIf="monto1.hasError('maxlength')">
+            El monto 1 ingresado es invalido
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-2" for="monto2">Monto 2</label>
+    <div class="col-md-10">
+      <div class="col-md-5">
+        <input type="number" step="0.01" class="form-control text-box single-line" name="monto2" formControlName="monto2">
+
+        <div *ngIf="monto2.invalid && (monto2.dirty || monto2.touched)" class="alert alert-danger">
+          <div *ngIf="monto2.hasError('pattern')">
+            El monto 2 solo acepta valores reales con dos posiciones decimales
+          </div>
+
+          <div *ngIf="monto2.hasError('min')">
+            El monto 2 debe ser mayor a cero
+          </div>
+          <div *ngIf="monto2.hasError('maxlength')">
+            El monto 2 ingresado es invalido
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group ">
+    <div class="col-md-offset-2 col-md-10 ">
+      <button class="btn btn-default " type="submit">Guardar</button>
+    </div>
+  </div>
+
+</form>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8) " size="default " color="#fff " type="ball-clip-rotate "></ngx-spinner>
+<div>
+  <a [routerLink]="[ '/filtros/listar'] ">Regresar</a>
+</div>

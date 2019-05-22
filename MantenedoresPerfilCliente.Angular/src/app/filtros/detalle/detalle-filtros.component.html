@@ -1,0 +1,77 @@
+<div>
+  <h3>Mantenedor de Filtros</h3>
+  <hr>
+  <dl class="dl-horizontal">
+    <dt>
+      Codigo
+    </dt>
+
+    <dd>
+      {{this.filtro.codigo}}
+    </dd>
+
+    <dt>
+      Nombre
+    </dt>
+
+    <dd>
+      {{this.filtro.descripcion}}
+    </dd>
+
+    <dt>
+      Estado
+    </dt>
+
+    <dd>
+      {{this.filtro.estadoFiltroDescripcion}}
+    </dd>
+
+
+    <dt>
+      Perfil
+    </dt>
+
+    <dd>
+      {{this.filtro.perfilDescripcion}}
+    </dd>
+
+    <dt>
+      Corte 1
+    </dt>
+
+    <dd>
+      {{this.filtro.corte1}}
+    </dd>
+    <dt>
+      Corte 2
+    </dt>
+
+    <dd>
+      {{this.filtro.corte2}}
+    </dd>
+
+    <dt>
+      Monto 1
+    </dt>
+
+    <dd>
+      {{this.filtro.monto1}}
+    </dd>
+
+    <dt>
+      Monto 2
+    </dt>
+
+    <dd>
+      {{this.filtro.monto2}}
+    </dd>
+
+    <th>
+
+
+  </dl>
+  <hr>
+  <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+  <div class="col-md-offset-1">
+    <a [routerLink]="[ '/filtros/listar'] ">Regresar</a>
+  </div>

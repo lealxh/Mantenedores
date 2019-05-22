@@ -1,0 +1,59 @@
+<h3>Mantenedor de Exclusiones</h3>
+<p>
+  <br>
+  <a [routerLink]="['/exclusiones/editar','0']">Crear</a>
+</p>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<div class="table-responsive">
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>
+          Rut
+        </th>
+        <th>
+          Motivo
+        </th>
+        <th>
+          Tipo de Bloqueo
+        </th>
+        <th>
+          Fecha Inicio
+        </th>
+        <th>
+          Fecha Fin
+        </th>
+        <th>
+          Comentario
+        </th>
+        <th></th>
+      </tr>
+
+      <tr *ngFor="let item of exclusiones">
+        <td>
+          {{item.rut}}
+        </td>
+        <td>
+          {{item.motivoBloqueoDescripcion }}
+        </td>
+        <td>
+          {{item.tipoBloqueo}}
+        </td>
+        <td>
+          {{item.fechaInicio|date:'dd/MMM/yy h:mma'}}
+        </td>
+        <td>
+          {{ item.fechaFin|date:'dd/MMM/yy h:mma'}}
+        </td>
+        <td>
+          {{item.comentario}}
+        </td>
+        <td>
+          <a [routerLink]="['/exclusiones/editar',item.id]">Editar</a> |
+          <a [routerLink]="['/exclusiones/detalles',item.id]">Detalles</a> |
+          <a [routerLink]="['/exclusiones/eliminar',item.id]">Eliminar</a>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>

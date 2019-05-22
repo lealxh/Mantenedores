@@ -1,0 +1,28 @@
+<div>
+  <h3>Mantenedor de Estados de Filtros</h3>
+  <hr>
+  <dl class="dl-horizontal">
+    <dt>
+      Codigo
+    </dt>
+
+    <dd>
+      {{this.estadofiltro.cod}}
+    </dd>
+
+    <dt>
+      Descripcion
+    </dt>
+
+    <dd>
+      {{this.estadofiltro.descripcion}}
+    </dd>
+    <th>
+
+
+  </dl>
+  <hr>
+  <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+  <div class="col-md-offset-1">
+    <a [routerLink]="[ '/estadofiltros/listar'] ">Regresar</a>
+  </div>

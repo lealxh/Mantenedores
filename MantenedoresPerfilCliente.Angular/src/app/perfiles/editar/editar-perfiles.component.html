@@ -1,0 +1,124 @@
+<form [formGroup]="perfilform" (ngSubmit)="onSubmit()">
+
+  <h3>Mantenedor de Perfiles</h3>
+  <hr>
+
+  <div class="form-group">
+    <label class="control-label col-md-2" for="Codigo">Codigo</label>
+    <div class="col-md-10">
+      <div class="col-md-5">
+        <input type="number" (blur)="makeDescription(this)" step="1" [ngClass]="{invalidField: codigo.invalid && (codigo.dirty || codigo.touched)}"
+          type="number" step="1" class="form-control text-box single-line" formControlName="codigo" />
+        <div *ngIf="codigo.invalid && (codigo.dirty || codigo.touched)" class="alert alert-danger">
+
+          <div *ngIf="codigo.hasError('required')">
+            El codigo es requerido
+          </div>
+          <div *ngIf="codigo.hasError('pattern')">
+            El campo codigo solo admite valores enteros
+          </div>
+          <div *ngIf="codigo.hasError('min')">
+            El campo codigo debe ser mayor a cero
+          </div>
+          <div *ngIf="codigo.hasError('maxlength')">
+            El codigo ingresado es invalido
+          </div>
+          <div *ngIf="codigo.hasError('CodigoFiltroOcupado')">
+            El codigo ingresado ya se encuentra ocupado
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <label class="control-label col-md-2" for="Descripcion">Desc. Perfil</label>
+    <div class="col-md-10">
+      <div class="col-md-5">
+        <input type="text" readonly="true" [ngClass]="{invalidField: descripcion.invalid && (descripcion.dirty || descripcion.touched)}"
+          class="form-control text-box single-line" formControlName="descripcion">
+        <div *ngIf="this.descripcion.invalid && (descripcion.dirty || descripcion.touched)" class="alert alert-danger">
+          <div *ngIf="this.descripcion.hasError('required')">
+            El nombre del filtro es un campo requerido
+          </div>
+          <div *ngIf="this.descripcion.hasError('maxlength')">
+            El nombre ingresado es invalido
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <label class="control-label col-md-2" for="PiMax">PI Max</label>
+    <div class="col-md-10">
+      <div class="col-md-5">
+        <input type="number" step="0.01" [ngClass]="{invalidField: piMax.invalid && (piMax.dirty || piMax.touched)}" class="form-control text-box single-line"
+          formControlName="piMax">
+        <div *ngIf="piMax.invalid && (piMax.dirty || piMax.touched)" class="alert alert-danger">
+
+          <div *ngIf="piMax.hasError('pattern')">
+            El campo piMax solo acepta valores reales con dos posiciones decimales
+          </div>
+
+          <div *ngIf="piMax.hasError('min')">
+            El piMax debe ser mayor a cero
+          </div>
+          <div *ngIf="piMax.hasError('maxlength')">
+            El piMax ingresado es invalido
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-2" for="estadoPerfilId">Estado</label>
+    <div class="col-md-10">
+      <div class="col-md-5">
+        <select [ngClass]="{invalidField: estadoPerfilId.invalid && (estadoPerfilId.dirty || estadoPerfilId.touched)}" class="form-control"
+          id="estadoPerfilId" name="estadoPerfilId" formControlName="estadoPerfilId">
+          <option *ngFor="let item of this.estadosPerfil" [ngValue]="item.id">{{item.descripcion}}</option>
+        </select>
+        <div *ngIf="estadoPerfilId.invalid && (estadoPerfilId.dirty || estadoPerfilId.touched)" class="alert alert-danger">
+
+          <div *ngIf="estadoPerfilId.hasError('required')">
+            El estado es requerido
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-2" for="TipoPerfilId">Tipo</label>
+    <div class="col-md-10">
+      <div class="col-md-5">
+        <select [ngClass]="{invalidField: tipoPerfilId.invalid && (tipoPerfilId.dirty || tipoPerfilId.touched)}" class="form-control"
+          id="tipoPerfilId" name="tipoPerfilId" formControlName="tipoPerfilId">
+          <option *ngFor="let item of this.tiposPerfil" [ngValue]="item.id">{{item.descripcion}}</option>
+        </select>
+        <div *ngIf="tipoPerfilId.invalid && (tipoPerfilId.dirty || tipoPerfilId.touched)" class="alert alert-danger">
+
+          <div *ngIf="tipoPerfilId.hasError('required')">
+            El Tipo es requerido
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+      <button class="btn btn-default" type="submit">Guardar</button>
+    </div>
+  </div>
+
+</form>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" color="#fff" type="ball-clip-rotate"></ngx-spinner>
+<div>
+  <a [routerLink]="['/perfiles/listar']">Regresar</a>
+</div>
